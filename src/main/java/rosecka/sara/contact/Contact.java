@@ -1,6 +1,11 @@
 package rosecka.sara.contact;
 
-//import myExeptions.*;
+//mport myExeptions.*;
+
+import rosecka.sara.exception.EmptyString;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Contact {
     private String firstName;
@@ -26,7 +31,7 @@ public class Contact {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) throws EmptyString {
         this.firstName = firstName;
     }
 
@@ -42,11 +47,13 @@ public class Contact {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        if(phoneNumber.length() == 9){
+    public void setPhoneNumber(String phoneNumber) throws InputMismatchException {
+        try{
             this.phoneNumber = phoneNumber;
-        }else{
-
+        }catch(InputMismatchException e){
+            System.out.print("Enter phone number:");
+            Scanner in = new Scanner(System.in);
+            this.phoneNumber = in.next();
         }
 
     }
